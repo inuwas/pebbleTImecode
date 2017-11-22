@@ -5,15 +5,16 @@ const Timecode = require('smpte-timecode');
 const Promise = require('bluebird');
 
 /**
- * GET /timecodevalue 
- * Returns the timecodevalues
+ * Returns output array of messages
+ * e.g [{input: 800, output: 00:00:32:00}, {input: 25, output: 00:00:00:01}]
  * @param {string | integer} timeCodeValue 
  * @param {integer} frameRate 
+ * @param {array} oldOutputMessages 
  */
 var returnTimeCode = (timeCodeValue, frameRate, oldOutputMessages) => {
   let errorMessage  = 'Please enter a numerical value or proper timecode e.g \'00:00:00:00\'';
   let outputMessages = [];
-  console.log('oldOutputMessages: ', oldOutputMessages );
+  
   if(oldOutputMessages) {
     oldOutputMessages.forEach(oldMessage => {
       outputMessages.push(oldMessage);
@@ -64,7 +65,7 @@ var returnTimeCode = (timeCodeValue, frameRate, oldOutputMessages) => {
 
 /**
  * POST /timecode 
- * Returns the Output Page with printed output
+ * Returns the Output Page with a form and output
  */
 timecodeRouter.post('/', function(req, res, next) {
   
@@ -83,7 +84,7 @@ timecodeRouter.post('/', function(req, res, next) {
 
 /**
  * GET /timecode 
- * Returns the Output with form input
+ * Output Page with a form
  */
 timecodeRouter.get('/', function(req, res, next) {
   res.render('timecode', { 
