@@ -1,4 +1,4 @@
-# pebbleTImecode
+# Pebble TV TimeCode Test
 
 ## How to Run
 
