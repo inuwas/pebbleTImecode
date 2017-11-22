@@ -15,14 +15,23 @@ block content
 					input(type='hidden', name='timeCodes', value=timeCodes) 
 				p
 				span.col-lg-1
-				button.btn.btn-danger(type='submit')
+				button.btn.btn-primary(type='submit')
 					| Verify
-				if (timeCodes)
-					each timeCode in timeCodes
-						.row
-							.col-6
-								span= timeCode.output
-						
+				p
+				p
+		if (timeCodes)
+			table.col-lg-6.table-hover
+				thead
+					tr
+						th #
+						th Input
+						th Result
+				tbody
+					each timeCode, index in timeCodes
+						tr(class=(index %2 ==0 ) ? 'bg-primary text-white' : '')
+							th(scope='row')= index+1
+							td= timeCode.input
+							td= timeCode.output						
 	script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
 	script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js', integrity='sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh', crossorigin='anonymous')
 	script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js', integrity='sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ', crossorigin='anonymous')
